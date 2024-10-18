@@ -1,7 +1,7 @@
 import cairo
 import math
 
-surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 400, 300)
+surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 500, 400)
 ctx = cairo.Context(surface)
 ctx.set_source_rgb(0.9, 0.9, 0.9)  # Light gray background
 ctx.paint()
