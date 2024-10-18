@@ -66,7 +66,7 @@ ctx.rectangle(312, 228, 18, 12)
 ctx.set_source_rgb(1, 1, 1)
 ctx.fill()
 
-# Trapeziums
+# Trapeziums roofs
 ctx.move_to(78, 192)
 ctx.line_to(128, 192)
 ctx.line_to(128, 220)
@@ -156,7 +156,7 @@ ctx.line_to(148, 210)
 ctx.close_path()
 ctx.set_source_rgb(0, 0, 0)
 ctx.fill_preserve()
-ctx.set_source_rgb(1, 1, 1)
+ctx.set_source_rgb(1,1,1)
 ctx.stroke()
 
 # Doors
