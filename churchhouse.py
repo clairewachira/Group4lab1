@@ -1,116 +1,199 @@
 import cairo
 import math
 
-# Set up the canvas dimensions
-WIDTH, HEIGHT = 600, 600
-surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, HEIGHT)
-context = cairo.Context(surface)
-context.set_source_rgb(1, 1, 1)  # White background
-context.paint()
+surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 400, 300)
+ctx = cairo.Context(surface)
+ctx.set_source_rgb(0.8,0.8,0.8)
+ctx.paint()
 
-# Main Building
-context.set_source_rgb(0, 0, 0)  # Black color
-context.rectangle(200, 300, 200, 200)  # Main house
-context.fill_preserve()
-context.stroke()
+ctx.set_line_width(2)
 
-# Triangle roof of the main building
-context.move_to(180, 300)  # Left corner of the roof
-context.line_to(300, 200)  # Peak of the roof
-context.line_to(420, 300)  # Right corner of the roof
-context.close_path()
-context.fill_preserve()
-context.stroke()
+# The part below the cross
+ctx.move_to(180, 90)
+ctx.line_to(210, 90)
+ctx.line_to(200, 50)
+ctx.line_to(190, 50)
+ctx.set_source_rgb(0, 0, 0)
+ctx.fill()
 
-# Left side building (Move closer, reduce x position from 100 to 120)
-context.rectangle(120, 387, 80, 113)  # Adjusted position, closer to main house
-context.fill_preserve()
-context.stroke()
+# Joinin the two parts
+ctx.move_to(190, 50)
+ctx.line_to(200, 50)
+ctx.line_to(195, 40)
+ctx.line_to(190, 50)
+ctx.set_source_rgb(0, 0, 0)
+ctx.fill()
 
-# Right side building (Move closer, reduce x position from 420 to 400)
-context.rectangle(400, 387, 80, 113)  # Adjusted position, closer to main house
-context.fill_preserve()
-context.stroke()
+# The cross
+ctx.move_to(195, 50)
+ctx.line_to(195, 15)
+ctx.move_to(185, 25)
+ctx.line_to(205, 25)
+ctx.set_source_rgb(0, 0, 0)
+ctx.stroke()
 
-# Left roof (polygon roof with right angles)
-context.set_source_rgb(0, 0, 0)  # Black color for left roof
-context.move_to(120, 387) # Left corner of the left roof
-context .move_to(100,387)
-context.line_to(120, 337)  # Left peak of the left roof
-context.line_to(200, 337)  # Right peak of the left roof
-context.line_to(200, 387)  # Right corner of the left roof
-context.close_path()
-context.fill_preserve()
-context.stroke()
-
-# Right roof (polygon roof with right angles)
-context.set_source_rgb(0, 0, 0)  # Black color for right roof
-context.move_to(400, 387)# Left corner of the right roof
-
-context.line_to(400, 337)  # Left peak of the right roof
-context.line_to(480, 337)  # Right peak of the right roof
-context.line_to(500,387)
-context.line_to(480, 387)# Right corner of the right roof
+# the bar below the cross
+ctx.rectangle(160, 91, 70, 9)
+ctx.set_source_rgb(0, 0, 0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1, 1, 1)
+ctx.stroke()
 
 
-context.close_path()
-context.fill_preserve()
-context.stroke()
+#Shell
+#side rects
+ctx.rectangle(50, 220, 80, 40)
+ctx.set_source_rgb(0, 0, 0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1, 1, 1)
+ctx.stroke()
+ctx.rectangle(260, 220, 80, 40)
+ctx.set_source_rgb(0, 0, 0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1, 1, 1)
+ctx.stroke()
 
-# Left windows
-context.set_source_rgb(1, 1, 1)  # White windows
-context.rectangle(130, 407, 20, 20)  # Left window 1
-context.fill_preserve()
-context.stroke()
+#small white
+ctx.rectangle(60, 230, 20, 15)
+ctx.set_source_rgb(1, 1, 1)
+ctx.fill()
+ctx.rectangle(90, 230, 20, 15)
+ctx.set_source_rgb(1, 1, 1)
+ctx.fill()
+ctx.rectangle(280, 230, 20, 15)
+ctx.set_source_rgb(1, 1, 1)
+ctx.fill()
+ctx.rectangle(310, 230, 20, 15)
+ctx.set_source_rgb(1, 1, 1)
+ctx.fill()
 
-context.rectangle(170, 407, 20, 20)  # Left window 2
-context.fill_preserve()
-context.stroke()
+#trapeziums
+ctx.move_to(80, 190)
+ctx.line_to(130, 190)
+ctx.line_to(130, 220)
+ctx.line_to(40, 220)
+ctx.close_path()
+ctx.set_source_rgb(0, 0, 0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1, 1, 1)
+ctx.stroke()
 
-# Right windows
-context.rectangle(410, 407, 20, 20)  # Right window 1
-context.fill_preserve()
-context.stroke()
+ctx.move_to(260, 190)
+ctx.line_to(310, 190)
+ctx.line_to(350, 220)
+ctx.line_to(260, 220)
+ctx.close_path()
+ctx.set_source_rgb(0, 0, 0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1, 1, 1)
+ctx.stroke()
 
-context.rectangle(450, 407, 20, 20)  # Right window 2
-context.fill_preserve()
-context.stroke()
+#Center
+ctx.move_to(130, 170)
+ctx.line_to(130, 270)
+ctx.line_to(260, 270)
+ctx.line_to(260, 170)
+ctx.set_source_rgb(0,0,0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1,1,1)
+ctx.stroke()
 
-# Door
-context.rectangle(270, 400, 60, 100)  # Door frame
-context.fill_preserve()
-context.stroke()
+ctx.rectangle(160, 220, 34, 47)
+ctx.rectangle(196, 220, 34, 47)
+ctx.fill()
 
-# Arch for door
-context.arc(300, 400, 30, math.pi, 2 * math.pi)  # Semi-circle for door arch
-context.fill_preserve()
-context.stroke()
+ctx.move_to(160, 220)
+ctx.curve_to(170, 210, 180, 210, 194, 210)
+ctx.line_to(194, 220)
+ctx.close_path()
+ctx.fill()
 
-# Small white circle above the door
-context.set_source_rgb(1, 1, 1)  # White color for circle
-context.arc(300, 390, 10, 0, 2 * math.pi)  # Small circle above door
-context.fill_preserve()
-context.stroke()
+ctx.move_to(196, 210)
+ctx.curve_to(210, 210, 220, 210, 229, 220)
+ctx.line_to(196, 220)
+ctx.close_path()
+ctx.fill()
 
-# Tower
-context.set_source_rgb(0, 0, 0)  # Black color for tower
-context.rectangle(270, 180, 60, 100)  # Main tower
-context.fill_preserve()
-context.stroke()
+# Structure of center block
+ctx.move_to(130, 170)
+ctx.line_to(130, 270)
+ctx.line_to(260, 270)
+ctx.line_to(260, 170)
+ctx.line_to(240, 160)
+ctx.line_to(150, 160)
+ctx.close_path()
+ctx.set_source_rgb(0,0,0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1,1,1)
+ctx.stroke()
 
-context.rectangle(280, 120, 40, 60)  # Upper tower part
-context.fill_preserve()
-context.stroke()
+# Structure of center roof
+ctx.move_to(120, 180)
+ctx.line_to(150, 160)
+ctx.line_to(240, 160)
+ctx.line_to(270, 180)
+ctx.line_to(270, 170)
+ctx.line_to(240, 150)
+ctx.line_to(150, 150)
+ctx.line_to(120, 170)
+ctx.close_path()
+ctx.set_source_rgb(0,0,0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1,1,1)
+ctx.stroke()
 
-# Cross on top of the tower
-context.set_source_rgb(0, 0, 0)  # Black cross
-context.set_line_width(3)  # Reduced line width to make the cross thinner
-context.move_to(300, 90)  # Vertical part of cross
-context.line_to(300, 120)
-context.move_to(290, 105)  # Horizontal part of cross
-context.line_to(310, 105)
-context.stroke()
+# Center block window
+ctx.arc(195, 175, 10, math.radians(0), math.radians(360))
+ctx.set_source_rgb(1,1,1)
+ctx.fill()
 
-# Finalize and save image
-surface.write_to_png("church_house_with_polygon_roofs_corrected.png")
-print("Image saved as church_house_with_polygon_roofs_corrected.png")
+# Roof above the door
+ctx.move_to(150, 220)
+ctx.line_to(195, 200)
+ctx.line_to(240, 220)
+ctx.line_to(240, 210)
+ctx.line_to(195, 190)
+ctx.line_to(150, 210)
+ctx.close_path()
+ctx.set_source_rgb(0,0,0)
+ctx.fill_preserve()
+ctx.set_source_rgb(1,1,1)
+ctx.stroke()
+
+# Doors
+ctx.rectangle(160, 220, 34, 47)
+ctx.rectangle(196, 220, 34, 47)
+ctx.fill()
+
+
+ctx.move_to(160, 220)
+ctx.curve_to(170, 210, 180, 210, 194, 210)
+ctx.line_to(194, 220)
+ctx.close_path()
+ctx.fill()
+
+ctx.move_to(196, 210)
+ctx.curve_to(210, 210, 220, 210, 229, 220)
+ctx.line_to(196, 220)
+ctx.close_path()
+ctx.fill()
+
+# Top part
+ctx.rectangle(170, 100, 50, 50)
+ctx.set_source_rgb(0, 0, 0)
+ctx.set_line_width(1)
+ctx.fill_preserve()
+ctx.stroke()
+
+ctx.move_to(180, 120)  
+ctx.line_to(180, 147)  
+ctx.line_to(210, 147)  
+ctx.line_to(210, 120)  
+ctx.arc(195, 120, 15, math.pi, 0) 
+ctx.set_source_rgb(1, 1, 1 )  
+ctx.set_line_width(1)
+ctx.fill_preserve()  
+ctx.stroke()
+
+
+surface.write_to_png('chapel.png')
