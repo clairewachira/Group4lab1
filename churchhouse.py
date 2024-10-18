@@ -8,7 +8,7 @@ ctx.paint()
 
 ctx.set_line_width(2)
 
-# The part below the cross
+# The part under the cross
 ctx.move_to(180, 90)
 ctx.line_to(210, 90)
 ctx.line_to(200, 50)
